@@ -1,0 +1,10 @@
+/*You can view my store database here*/
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, name TEXT, amount_of_the_item INTEGER, price INTEGER);
+INSERT INTO store VALUES 
+(1, 'notebook', 30, 10), (2, 'pens', 50, 2), (3, 'envelop', 16, 15), (4, 'pencil_case', 10, 20), (5, 'eraser', 40, 1);
+SELECT * FROM store;
+SELECT name, price FROM store ORDER BY price;
+SELECT sum(price) FROM store;
+
+/*the end of the project*/
