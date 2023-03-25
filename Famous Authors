@@ -1,0 +1,28 @@
+/* This project is about famous authors, their personal details and books*/ 
+
+/* Frirst Table*/
+
+CREATE TABLE Author (Id INTEGER PRIMARY KEY, FullName TEXT, Country TEXT);
+
+  INSERT INTO Author VALUES 
+  (1, "Nagaib Mahfouz", "Egypt"), (2, "Buthaina AL Eissa", "Bahrain"), (3, "Mohammed AL Naas", "Libya");
+
+/* Second Table*/ 
+CREATE TABLE Book (Book_Id INTEGER, FullName TEXT, Published_Year INTEGER);
+
+  INSERT INTO Book VALUES 
+  (1, "The Other Place", 1998), (2, "I Grew Up and Forget tp forget", 2020), (3, "Bread on Uncle Milad's Table", 2022); 
+
+/*Joining Author and Book Tables*/
+
+  SELECT A.FullName AS Author, B.FullName AS Title_of_The_Boook 
+  FROM Author A 
+  JOIN Book B 
+  ON A.id = B.Book_id; 
+
+/*Highlighting Authors those who published books in the last five years*/
+
+  SELECT A.FullName AS Author, B.FullName AS Title_of_The_Book, B.Published_Year 
+  FROM Author A 
+  JOIN Book B 
+    ON A.id = B.Book_id WHERE Published_Year > 2019; 
