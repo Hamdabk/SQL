@@ -1,0 +1,29 @@
+/*Digged countries_and_territories.sql Data*/
+/* Here is the data link: https://gist.github.com/pamelafox/ad4f6abbaac0a48aa781*/
+/*the database table we are selecting from is 'countries'*/
+
+/*Part 1: The average, max, and min values in the data*/
+
+  SELECT name, min(population) FROM countries GROUP BY name ORDER BY population DESC;
+  SELECT name, avg(population) FROM countries GROUP BY name;
+  SELECT name, max(population) FROM countries GROUP BY name;
+  
+/*Part 2: Conditions using HAVING Function*/
+
+  SELECT name, min(population) AS min_population FROM countries GROUP BY  name HAVING min_population < 100000
+  SELECT name, max(population) as max_population FROM countries GROUP BY name HAVING max_population > 300000000;
+  SELECT name, avg(population) as avg_population FROM countries GROUP BY name HAVING avg_population >  300000;
+  
+ /* Part 3: Predicting results with CASE function, making the numbers readable*/
+  
+  SELECT name,
+CASE
+  WHEN fertility_rate < 2.1 THEN "lower fertility"
+  WHEN fertility_rate >= 2 THEN "normal fertility"
+    END AS "fartility_levels"
+       FROM countries;
+       
+ /*Part 4: filtering the data using AND function*/
+    SELECT * FROM countries WHERE population > 20000 AND fertility_rate > 2.1;
+    
+ 
