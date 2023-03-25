@@ -11,7 +11,7 @@ CREATE TABLE Author (Id INTEGER PRIMARY KEY, FullName TEXT, Country TEXT);
 CREATE TABLE Book (Book_Id INTEGER, FullName TEXT, Published_Year INTEGER);
 
   INSERT INTO Book VALUES 
-  (1, "The Other Place", 1998), (2, "I Grew Up and Forget tp forget", 2020), (3, "Bread on Uncle Milad's Table", 2022); 
+  (1, "The Other Place", 1998), (2, "I Grew Up and Forget to forget", 2020), (3, "Bread on Uncle Milad's Table", 2022); 
 
 /*Joining Author and Book Tables*/
 
