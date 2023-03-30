@@ -1,0 +1,41 @@
+/*Here I'm querying a database with multiple tables in it to compute statistics about customer and order data*/
+
+/* Q1: How many orders were placed in January?*/
+SELECT Count(orderID) FROM Practice101.JanSales
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+  
+/* Q2: How many of those orders were for an iPhone? */
+SELECT COUNT(orderID) FROM Practice101.JanSales 
+WHERE (Product) = 'iPhone' 
+ AND LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+/* Q3:  Select the customer account numbers for all the orders that were placed in February. */
+SELECT DISTINCT c.acctnum FROM customers c 
+INNER JOIN FebSales f 
+ON order_id = orderID 
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+/* Q4: Which product was the cheapest one sold in January, and what was the price? */
+SELECT DISTINCT  min(price), Product 
+FROM Practice101.JanSales;
+
+/*OR*/
+SELECT DISTINCT Product, price FROM Practice101.JanSales 
+WHERE price IN (SELECT min(price) from Practice101.JanSales);
+
+/* Q5: What is the total revenue for each product sold in January? */
+SELECT Sum(Quantity) * price AS Total_Revenue,
+Product
+FROM practice101.JanSales GROUP BY Product;
+
+/* Q6: Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue? */
+SELECT Sum(Quantity), Product, 
+Sum(Quantity)*price as Total_Revenue
+FROM Practice101.FebSales 
+WHERE location = '548 Lincoln St, Seattle, WA 98101' GROUP BY product;
+
+/* How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? */
+SELECT DISTINCT Count(c.acctnum), avg(quantity*price) AS Average_Amount_Spent 
+FROM  FebSales f LEFT JOIN customers c 
+ON c.order_id = f.orderID WHERE Quantity >2 
+AND LENGTH(orderID) = 6 AND orderID <> 'Order ID';
