@@ -58,13 +58,13 @@ WHERE product LIKE '%Headphones%' GROUP product;
 
 /* Q11: What was the average amount spent per account in February?*/
 #Answer 1
-SELECT Sum(f.price * f.quantity) / Count(c.acctnum) AS average_spent 
+SELECT Sum(f.price * f.quantity) / Count(c.acctnum) AS Average_Spent 
 FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
 ON f.orderID=c.order_id 
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
 #OR Answer 2
-SELECT Avg(f.quantity*f.price) as average_spent 
+SELECT Avg(f.quantity*f.price) as Average_Spent 
 FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
 ON f.orderID=c.order_id 
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
@@ -77,7 +77,7 @@ ON f.orderID=c.order_id
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
 #OR Answer 2:
-SELECT FLOOR(Avg(f.quantity)) FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+SELECT FLOOR(Avg(f.quantity)) AS The_Average_Product FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
 ON f.orderID=c.order_id 
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
