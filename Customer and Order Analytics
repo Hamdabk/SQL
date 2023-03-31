@@ -77,7 +77,7 @@ ON f.orderID=c.order_id
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
 #OR Answer 2:
-SELECT FLOOR(Avg(quantity)) FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+SELECT FLOOR(Avg(f.quantity)) FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
 ON f.orderID=c.order_id 
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
