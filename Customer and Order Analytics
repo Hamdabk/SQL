@@ -70,6 +70,16 @@ ON f.orderID=c.order_id
 WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
 /*Q12: What was the average quantity of products purchased per account in February?*/
+#Answer 1
+SELECT Sum(f.quantity) / Count(c.acctnum) AS The_Average_Product 
+FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+ON f.orderID=c.order_id 
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+#OR Answer 2:
+SELECT FLOOR(Avg(quantity)) FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+ON f.orderID=c.order_id 
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
 
 /*Q13: Which product brought in the most revenue in January and how much revenue did it bring in total? */
 
