@@ -34,8 +34,43 @@ Sum(Quantity)*price as Total_Revenue
 FROM Practice101.FebSales 
 WHERE location = '548 Lincoln St, Seattle, WA 98101' GROUP BY product;
 
-/* How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? */
+/* Q7: How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? */
 SELECT DISTINCT Count(c.acctnum), avg(quantity*price) AS Average_Amount_Spent 
 FROM  FebSales f LEFT JOIN customers c 
 ON c.order_id = f.orderID WHERE Quantity >2 
 AND LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+/* Q8: Which locations in New York received at least 3 orders in January, and how many orders did they each receive?
+SELECT DISTINCT location,
+Count(orderID) FROM Practice101.JanSales 
+WHERE location LIKE '%New York%' 
+AND LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+/*Q9: List all the products sold in Los Angeles in February, and include how many of each were sold? */
+SELECT DISTINCT product, Sum(quantity) 
+FROM Practice101.FebSales 
+WHERE location LIKE '%Los Angeles%' GROUP BY product;
+
+/* Q10: How many of each type of headphones were sold in February?*/
+SELECT DISTINCT product, sum(quantity) AS Quantity
+FROM Practice101.FebSales 
+WHERE product LIKE '%Headphones%' GROUP product;
+
+/* Q11: What was the average amount spent per account in February?*/
+#Answer 1
+SELECT Sum(f.price * f.quantity) / Count(c.acctnum) AS average_spent 
+FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+ON f.orderID=c.order_id 
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+#OR Answer 2
+SELECT Avg(f.quantity*f.price) as average_spent 
+FROM Practice101.FebSales f LEFT JOIN Practice101.customers c 
+ON f.orderID=c.order_id 
+WHERE LENGTH(orderID) = 6 AND orderID <> 'Order ID';
+
+/*Q12: What was the average quantity of products purchased per account in February?*/
+
+/*Q13: Which product brought in the most revenue in January and how much revenue did it bring in total? */
+
+
