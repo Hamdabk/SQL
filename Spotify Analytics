@@ -33,6 +33,7 @@ time_signature INTEGER NOT NULL
 SELECT track_name, danceability 
 FROM Practice101.Spotifydata
 ORDER BY danceability DESC
+
 LIMIT 4;
 
 # Then I determined the avg popularity, danceability, and energy by artist and track. 
